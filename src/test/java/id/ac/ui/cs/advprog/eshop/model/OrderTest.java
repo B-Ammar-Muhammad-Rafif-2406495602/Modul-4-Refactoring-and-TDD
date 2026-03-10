@@ -37,10 +37,10 @@ public class OrderTest {
 
         assertThrows(IllegalArgumentException.class, () -> {
             Order order = new Order(
-                "id: \"13652556-012a-4c07-b546-56ab1396d79b\"",
+                "13652556-012a-4c07-b546-54eb1396d79b",
                 this.products,
-                "orderTime: 1708560000L",
-                "author: \"Safira Sudrajat\""
+                1708560000L,
+                "Safira Sudrajat"
             );
         });
     }
