@@ -1,9 +1,13 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
 import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import java.util.ArrayList;
 
+@Repository
 public class OrderRepository {
     private List<Order> orderData = new ArrayList<>();
 
