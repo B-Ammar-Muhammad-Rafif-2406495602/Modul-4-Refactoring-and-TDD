@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Payments</title>
+</head>
+<body>
+<h2>All Payments</h2>
+
+<div th:if="${payments.isEmpty()}">
+    <p>No payments found.</p>
+</div>
+
+<table th:if="${!payments.isEmpty()}" border="1">
+    <thead>
+        <tr>
+            <th>Payment ID</th>
+            <th>Method</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="payment : ${payments}">
+            <td th:text="${payment.id}"></td>
+            <td th:text="${payment.method}"></td>
+            <td th:text="${payment.status}"></td>
+            <td>
+                <a th:href="@{/payment/admin/detail/{id}(id=${payment.id})}">Manage</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
