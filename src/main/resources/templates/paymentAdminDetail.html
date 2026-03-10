@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Payment</title>
+</head>
+<body>
+<h2>Manage Payment</h2>
+
+<p><strong>Payment ID:</strong> <span th:text="${payment.id}"></span></p>
+<p><strong>Method:</strong> <span th:text="${payment.method}"></span></p>
+<p><strong>Current Status:</strong> <span th:text="${payment.status}"></span></p>
+
+<form th:action="@{/payment/admin/set-status/{id}(id=${payment.id})}" method="post">
+    <label for="status">Set Status:</label>
+    <select id="status" name="status">
+        <option value="SUCCESS">SUCCESS</option>
+        <option value="REJECTED">REJECTED</option>
+    </select>
+    <button type="submit">Update Status</button>
+</form>
+
+<br/>
+<a href="/payment/admin/list">Back to All Payments</a>
+</body>
+</html>

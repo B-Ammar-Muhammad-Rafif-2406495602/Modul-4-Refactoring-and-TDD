@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order History</title>
+</head>
+<body>
+<h2>Order History</h2>
+
+<form method="post" action="/order/history">
+    <label for="author">Enter your name:</label>
+    <input type="text" id="author" name="author" required/>
+    <button type="submit">Search</button>
+</form>
+
+<div th:if="${orders != null}">
+    <h3 th:text="'Orders for: ' + ${author}"></h3>
+    <div th:if="${orders.isEmpty()}">
+        <p>No orders found.</p>
+    </div>
+    <table th:if="${!orders.isEmpty()}" border="1">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Order Time</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.author}"></td>
+                <td th:text="${order.status}"></td>
+                <td th:text="${order.orderTime}"></td>
+                <td>
+                    <a th:href="@{/order/pay/{id}(id=${order.id})}">Pay</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
