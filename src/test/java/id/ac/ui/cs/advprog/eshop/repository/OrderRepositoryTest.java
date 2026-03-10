@@ -21,6 +21,8 @@ public class OrderRepositoryTest {
 
     @BeforeEach
     void setUp() {
+        orderRepository = new OrderRepository();
+
         List<Product> products = new ArrayList<>();
         Product product1 = new Product();
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
@@ -113,11 +115,20 @@ public class OrderRepositoryTest {
 
     @Test
     void testFindAllByAuthorIfAuthorCorrect() {
-        for(Order order : orders) {
+        for (Order order : orders) {
             orderRepository.save(order);
         }
 
-        List<Order> orderRepository.findAllByAuthor(
+        List<Order> orderList = orderRepository.findAllByAuthor(
+            orders.get(1).getAuthor());
+        assertEquals(2, orderList.size());
+    }
+
+    @Test
+    void testFindAllByAuthorIfAllLowercase() {
+        orderRepository.save(orders.get(1));
+
+        List<Order> orderList = orderRepository.findAllByAuthor(
             orders.get(1).getAuthor().toLowerCase());
         assertTrue(orderList.isEmpty());
     }
