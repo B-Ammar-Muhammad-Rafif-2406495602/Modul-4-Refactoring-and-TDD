@@ -97,8 +97,7 @@ public class OrderTest {
             "13652556-012a-4c07-b546-54eb1396d79b",
             this.products,
             1708560000L,
-            "Safira Sudrajat",
-            "MEOW"
+            "Safira Sudrajat"
         );
         order.setStatus("CANCELLED");
         assertEquals("CANCELLED", order.getStatus());
@@ -110,8 +109,7 @@ public class OrderTest {
             "13652556-012a-4c07-b546-54eb1396d79b",
             this.products,
             1708560000L,
-            "Safira Sudrajat",
-            "MEOW"
+            "Safira Sudrajat"
         );
         assertThrows(IllegalArgumentException.class, () -> order.setStatus("MEOW"));
     }
