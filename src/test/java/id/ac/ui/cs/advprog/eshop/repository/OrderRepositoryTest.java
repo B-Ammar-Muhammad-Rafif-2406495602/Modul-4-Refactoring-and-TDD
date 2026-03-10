@@ -132,7 +132,6 @@ public class OrderRepositoryTest {
             orders.get(1).getAuthor().toLowerCase());
         assertTrue(orderList.isEmpty());
     }
-
-    // wrong commit must be [RED] Add OrderRepository skeleton
+    
 }
 
