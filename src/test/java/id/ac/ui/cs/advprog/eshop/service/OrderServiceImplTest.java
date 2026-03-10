@@ -18,8 +18,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.function.Executable;
+import java.util.NoSuchElementException;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.repository.OrderRepository;
 
@@ -116,12 +120,12 @@ public class OrderServiceImplTest {
     void testUpdateStatusInvalidOrderId() {
         doReturn(null).when(orderRepository).findById("zczc");
 
-        assertThrows(NoSuchElementException.class,
-            () -> orderService.updateStatus("zczc", OrderStatus.SUCCESS.getValue()));
+        assertThrows(NoSuchElementException.class, () ->
+            orderService.updateStatus("zczc", OrderStatus.SUCCESS.getValue())
+        );
 
         verify(orderRepository, times(0)).save(any(Order.class));
     }
-
     @Test
     void testFindByIdIfIdFound() {
         Order order = orders.get(1);
